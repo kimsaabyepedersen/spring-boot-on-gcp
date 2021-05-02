@@ -11,7 +11,7 @@ steps:
     args: ['push', 'gcr.io/$PROJECT_ID/${_ARTIFACT_NAME}:${_VERSION}']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', '${_ARTIFACT_NAME}', '--image', 'gcr.io/$PROJECT_ID/${_ARTIFACT_NAME}:${_VERSION}', '--region', '${_REGION}', '--platform', 'managed']
+    args: ['run', 'deploy', '${_ARTIFACT_NAME}', '--image', 'gcr.io/$PROJECT_ID/${_ARTIFACT_NAME}:${_VERSION}', '--region', '${_REGION}', '--platform', 'managed', '--allow-unauthenticated']
 images: ["gcr.io/$PROJECT_ID/${_ARTIFACT_NAME}:${_VERSION}"]
 substitutions:
   _VERSION: 0.0.1
