@@ -1,0 +1,13 @@
+steps:
+  - name: maven:3-jdk-11
+    entrypoint: mvn
+    args: ["test"]
+  - name: maven:3-jdk-11
+    entrypoint: mvn
+    args: ["package", "-Dmaven.test.skip=true"]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['functions', 'deploy', '${_ARTIFACT_NAME}', '--entry-point', 'org.springframework.cloud.function.adapter.gcp.GcfJarLauncher', '--region', '${_REGION}', '--runtime', 'java11', '--trigger-http', '--source', 'target/deploy', '--memory', '256MB', '--allow-unauthenticated']
+substitutions:
+  _ARTIFACT_NAME: springongcp-cloudfunctions
+  _REGION: europe-west1
