@@ -24,7 +24,7 @@ public class Application {
     @Bean
     public Supplier<String> function() {
         return () -> {
-            log.info("Request to /time");
+            log.info("Request to Spring based function");
             ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
             return format("{\"utc\": \"%s\"}", ISO_LOCAL_DATE_TIME.format(now));
         };
